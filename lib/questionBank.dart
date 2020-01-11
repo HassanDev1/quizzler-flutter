@@ -1,6 +1,7 @@
 import 'package:quizzler/question.dart';
 
 class BrainQuiz{
+  int _questionNumber = 0;
   List<Question> questions = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
@@ -29,4 +30,15 @@ class BrainQuiz{
         true),
 
   ];
+  void nextQuestion(){
+    if (_questionNumber < questions.length){
+      _questionNumber++;
+    }
+  }
+  String getQuestion(){
+    return questions[_questionNumber].questionText;
+  }
+  bool getAnswer( ){
+    return questions[_questionNumber].questionAnswer;
+  }
 }
