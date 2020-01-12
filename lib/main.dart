@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/questionBank.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -30,7 +31,17 @@ class _QuizPageState extends State<QuizPage> {
  List<Icon>  scoreKeeper =[];
  void userChecked(bool userPicked){
    bool correctAnswer=quiz.getAnswer();
-                
+               setState(() { 
+            if(quiz.isFinished()== true){
+              Alert(
+                context: context,
+                title:"Finished!",
+                desc:"you've reached the end of the quiz",
+              ).show();
+              quiz.reset();
+              scoreKeeper = [];
+            }
+            else{
                 if(userPicked==correctAnswer ){
                   print("You got it right!");
                   scoreKeeper.add(
@@ -44,10 +55,11 @@ class _QuizPageState extends State<QuizPage> {
                     Icon(Icons.close,color:Colors.red)
                   );
                 }
-                setState(() {
+                
                  quiz.nextQuestion();
                    
                 }
+               }
                 );
 
  }

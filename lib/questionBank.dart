@@ -1,5 +1,6 @@
 import 'package:quizzler/question.dart';
 
+
 class BrainQuiz{
   int _questionNumber = 0;
   List<Question> questions = [
@@ -34,11 +35,20 @@ class BrainQuiz{
     if (_questionNumber < questions.length){
       _questionNumber++;
     }
+   
+    
   }
   String getQuestion(){
     return questions[_questionNumber].questionText;
   }
   bool getAnswer( ){
     return questions[_questionNumber].questionAnswer;
+  }
+
+  bool isFinished(){
+    return _questionNumber >= questions.length-1?true:false;
+  }
+  void reset(){
+    _questionNumber = 0;
   }
 }
